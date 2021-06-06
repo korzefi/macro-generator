@@ -1,31 +1,24 @@
-ffsdfds
-fsdfds
-fdsfsd
+FREE TEXT
+FREE TEXT 2
+FREE TEXT 3
 
-
-.REPT something
-mess1
-mess2
+.REPT 3/0
+3 result
 .ENDM
 
-ffsdfds
-fsdfds
-fdsfsd
-
+.REPT a*b
+a=2 dasdfa simple expression b=3
+.ENDM
 
 .REPT something*/fdsfs
-many oper
-many oper
+many operators
 .ENDM
 
-ffsdfds
-fsdfds
-fdsfsd
-
+FREE TEXT
+FREE TEXT 2
+FREE TEXT 3
 
 .REPT 
-bla
-bla
-bla
+no expression
 .ENDM
 

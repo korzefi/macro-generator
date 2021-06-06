@@ -60,12 +60,10 @@ void Generator::constructOutputData() {
 void Generator::constructMacroResult(const std::string& expression, const std::string& definition) {
     try {
         int multiplier = calculator->calculateResult(expression, definition);
-//        int multiplier = 3;
         std::string macro_result = buildMultipliedMacroOutput(definition, multiplier);
         output_data.push_back(macro_result);
     }
-    // TODO to be changed for more specific exception
-    catch (std::exception& e) {
+    catch (ExpressionCalculatorException& e) {
         exception_data.push_back(e.what());
     }
 }

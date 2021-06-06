@@ -22,8 +22,13 @@ private:
     std::vector<Token> parsed_expression;
     std::vector<std::string> expression_factors;
     
-    std::vector<size_t> getFactorsIndexes(const std::string& expression);
+    std::vector<size_t> getOperatorsIndexes(const std::string& expression);
+    std::vector<size_t> getOneOperatorIndexes(const std::string& expression, char oper);
+    void addOneOperPositionsToAllOthers(std::vector<size_t>& all_opers_positions, const std::vector<size_t>& one_oper_positions);
     void findRawFactors(const std::string& expression, const std::vector<size_t>& indexes);
+    void findFactorPrecedingOperator(const std::string& expression, size_t factor_start_pos, size_t oper_pos);
+    void findLastFactorFollowingOperator(const std::string& expression, size_t last_factor_start_pos);
+    void findOperator(const std::string& expression, size_t oper_pos);
     void getFactorsAsTokens(const std::string& expression, const std::string& definition);
     bool isOperType(const std::string& factor);
     char getOperAsChar(const std::string& oper);

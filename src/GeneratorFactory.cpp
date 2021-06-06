@@ -22,8 +22,8 @@ std::unique_ptr<SyntaxAnalyzer> GeneratorFactory::createSyntaxAnalyzer() {
 
 std::unique_ptr<ExpressionCalculator> GeneratorFactory::createExpressionCalculator() {
     std::unique_ptr<LiteralValueChecker> checker = std::make_unique<LiteralValueChecker>();
-    std::unique_ptr<TokenParser> token_parser = std::make_unique<TokenParser>();
-    return std::make_unique<ExpressionCalculator>(std::move(checker), std::move(token_parser));
+    std::unique_ptr<TokenParser> token_parser = std::make_unique<TokenParser>(std::move(checker));
+    return std::make_unique<ExpressionCalculator>(std::move(token_parser));
 }
 
 

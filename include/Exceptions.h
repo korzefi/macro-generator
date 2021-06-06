@@ -49,4 +49,25 @@ public:
     }
 };
 
+class ExpressionCalculatorException : public std::exception {
+public:
+    const char* what() const throw() = 0;
+};
+
+class NegativeValueExpressionResultException : public ExpressionCalculatorException {
+public:
+    NegativeValueExpressionResultException() = default;
+    const char* what() const throw() override {
+        return "Negative value expression result: the result must be a positive number";
+    }
+};
+
+class DivisionByZeroException : public ExpressionCalculatorException {
+public:
+    DivisionByZeroException() = default;
+    const char* what() const throw() override {
+        return "Division by 0 in an expression";
+    }
+};
+
 #endif /* Exceptions_h */

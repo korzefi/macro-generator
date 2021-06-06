@@ -1,1 +1,6 @@
+Incorrect expression syntax: there are successive operators
+
+Missing element: expression
+
+Division by 0 in an expression
 

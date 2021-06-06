@@ -1,44 +1,35 @@
 #include "ExpressionCalculator.h"
+#include "Exceptions.h"
 
 
 namespace macrogen {
 
-namespace {
-    const char NUMBER = '8';
-    const char END = '0';
-}
-
-ExpressionCalculator::ExpressionCalculator(std::unique_ptr<LiteralValueChecker> checker,
-                                           std::unique_ptr<TokenParser> token_parser) :
-checker(std::move(checker)),
+ExpressionCalculator::ExpressionCalculator(std::unique_ptr<TokenParser> token_parser) :
 token_parser(std::move(token_parser))
 {
     current_token = -1;
-    
-    Token t0, t1, t2, t3, t4, t5;
-    t0.kind = NUMBER;
-    t0.value = 9;
-    t1.kind = '-';
-    t2.kind = NUMBER;
-    t2.value = 3;
-    t3.kind = '*';
-    t4.kind = NUMBER;
-    t4.value = 2;
-    t5.kind = END;
-    parsed_tokens = {t0, t1, t2, t3, t4, t5};
 }
 
-
 int ExpressionCalculator::calculateResult(std::string expression, std::string definition) {
+    parsed_tokens.clear();
+    current_token = -1;
+    parsed_tokens = token_parser->parse(expression, definition);
+    std::cout << "SIZE: " << parsed_tokens.size() << std::endl;
+    for (auto& item : parsed_tokens) {
+        std::cout << item.kind;
+        if (item.kind == '8') {
+            std::cout << "-" << item.value;
+        }
+        std::cout << std::endl;
+    }
     int result = getExpression();
-    std::cout << "Result: " << result << std::endl;
     return result;
 }
 
 int ExpressionCalculator::getExpression() {
     int left = getTerm();
     Token token = getNextToken();
-    while (true) {
+    while (true) {  
         switch (token.kind) {
             case '+':
                 left += getTerm();
@@ -67,6 +58,7 @@ void ExpressionCalculator::setPrevToken() {
 int ExpressionCalculator::getTerm() {
     int left = getPrimary();
     Token token = getNextToken();
+    int divisor = 1;
     while (true) {
         switch (token.kind) {
             case '*':
@@ -74,8 +66,12 @@ int ExpressionCalculator::getTerm() {
                 token = getNextToken();
                 break;
             case '/':
-                // ADD EXCEPTION FOR DIVIDING BY 0
-                left /= getTerm();
+                divisor = getTerm();
+                if (divisor == 0) {
+                    divisor = 1;
+                    throw DivisionByZeroException();
+                }
+                left /= divisor;
                 token = getNextToken();
                 break;
             default:
