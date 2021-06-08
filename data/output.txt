@@ -1,7 +1,57 @@
-a=2 dasdfa simple expression b=3
-a=2 dasdfa simple expression b=3
-a=2 dasdfa simple expression b=3
-a=2 dasdfa simple expression b=3
-a=2 dasdfa simple expression b=3
-a=2 dasdfa simple expression b=3
+test regular 1 result 2
+test regular 1 result 2
+
+
+
+test regular 3 result 3
+test regular 3 result 3
+test regular 3 result 3
+
+test regular 4 result 1
+
+test regular 5 result 4
+test regular 5 result 4
+test regular 5 result 4
+test regular 5 result 4
+
+test regular 6 result2
+test regular 6 result2
+
+test regular 7 result 6
+test regular 7 result 6
+test regular 7 result 6
+test regular 7 result 6
+test regular 7 result 6
+test regular 7 result 6
+
+test regular 8 result 1
+
+test regular 9 result 3
+second line
+test regular 9 result 3
+second line
+test regular 9 result 3
+second line
+
+
+
+test substitution 2 a=2 result 2
+test substitution 2 a=2 result 2
+
+test substitution 3 a=3 result 3
+test substitution 3 a=3 result 3
+test substitution 3 a=3 result 3
+
+test substitution 4 a=3 some free text between b=15 c=2 d=80 result 2
+e=5 some text again f=6 result 2
+expression: 6*5-80/2+15-3=2
+test substitution 4 a=3 some free text between b=15 c=2 d=80 result 2
+e=5 some text again f=6 result 2
+expression: 6*5-80/2+15-3=2
+
+test substitution 5 b=2 result 2
+test substitution 5 b=2 result 2
+
+test substitution 6 a 5 b=gh3 c=2 result 2
+test substitution 6 a 5 b=gh3 c=2 result 2
 

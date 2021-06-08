@@ -2,5 +2,9 @@ Incorrect expression syntax: there are successive operators
 
 Missing element: expression
 
+Missing element: definition
+
+Negative value expression result: the result must be a positive number
+
 Division by 0 in an expression
 

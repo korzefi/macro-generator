@@ -24,6 +24,7 @@ private:
     int getPrimary();
     Token getNextToken();
     void setPrevToken();
+    void throwNegativeExceptIfNegativeResult(int result);
 };
 
 } //namespace macrogen

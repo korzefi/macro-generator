@@ -1,24 +1,127 @@
 FREE TEXT
-FREE TEXT 2
-FREE TEXT 3
+.FREE TEXT WITH DOT AT THE BEGINING
 
-.REPT 3/0
-3 result
+_______________
+
+Regular cases
+_______________
+
+.REPT 2
+test regular 1 result 2
 .ENDM
 
-.REPT a*b
-a=2 dasdfa simple expression b=3
+.REPT 0
+test regular 2 no result
 .ENDM
 
-.REPT something*/fdsfs
-many operators
+addition
+.REPT 1+2
+test regular 3 result 3
 .ENDM
 
-FREE TEXT
-FREE TEXT 2
-FREE TEXT 3
+subtraction
+.REPT 2-1
+test regular 4 result 1
+.ENDM
 
+multiplication
+.REPT 2*2
+test regular 5 result 4
+.ENDM
+
+division
+subtraction
+.REPT 4/2
+test regular 6 result2
+.ENDM
+
+first more complicated expression
+.REPT 2+2*2
+test regular 7 result 6
+.ENDM
+
+second more complicated expression
+.REPT 2+3*2-4/2-5
+test regular 8 result 1
+.ENDM
+
+test multiline definition
+.REPT 3
+test regular 9 result 3
+second line
+.ENDM
+
+_____________
+
+SUBSTITUTION
+_____________
+
+No literal in definition
+.REPT a
+test substitution 1 result 0
+.ENDM
+
+Simple literal value in definition
+.REPT a
+test substitution 2 a=2 result 2
+.ENDM
+
+Simple literal value in definition with more complicated expression
+.REPT 5*a-12
+test substitution 3 a=3 result 3
+.ENDM
+
+A few literal value in definition
+.REPT f*e-d/c+b-a
+test substitution 4 a=3 some free text between b=15 c=2 d=80 result 2
+e=5 some text again f=6 result 2
+expression: 6*5-80/2+15-3=2
+.ENDM
+
+Literal value that does not exist is substituted with 0
+.REPT 5*a+b
+test substitution 5 b=2 result 2
+.ENDM
+
+Literal value cannot be evaluated if there is no "=" operator
+Literal value cannot be evauluated if the expression after "=" is not numeric
+As a result these values are substituted with 0s
+.REPT 5*a+b+c
+test substitution 6 a 5 b=gh3 c=2 result 2
+.ENDM
+
+___________________________
+
+SYNTAX ANALYZER EXCEPTIONS
+___________________________
+
+Incorrect expression syntax
+.REPT 23*+5
+test exception 1
+.ENDM
+
+Missing expression
 .REPT 
-no expression
+test exception 2
 .ENDM
+
+Missing definition
+.REPT 3
+.ENDM
+
+_________________________________
+
+EXPRESSION CALCULATOR EXCEPTIONS
+_________________________________
+
+Result is a negative value
+.REPT 1-2
+test exception 3
+.ENDM
+
+Division by 0
+.REPT 3/0
+test exception 4
+.ENDM
+
 

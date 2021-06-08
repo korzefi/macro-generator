@@ -14,15 +14,8 @@ int ExpressionCalculator::calculateResult(std::string expression, std::string de
     parsed_tokens.clear();
     current_token = -1;
     parsed_tokens = token_parser->parse(expression, definition);
-    std::cout << "SIZE: " << parsed_tokens.size() << std::endl;
-    for (auto& item : parsed_tokens) {
-        std::cout << item.kind;
-        if (item.kind == '8') {
-            std::cout << "-" << item.value;
-        }
-        std::cout << std::endl;
-    }
     int result = getExpression();
+    throwNegativeExceptIfNegativeResult(result);
     return result;
 }
 
@@ -84,6 +77,12 @@ int ExpressionCalculator::getTerm() {
 int ExpressionCalculator::getPrimary() {
     Token token = getNextToken();
     return token.value;
+}
+
+void ExpressionCalculator::throwNegativeExceptIfNegativeResult(int result) {
+    if (result < 0) {
+        throw NegativeValueExpressionResultException();
+    }
 }
 
 } //namespace macrogen
