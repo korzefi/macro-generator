@@ -3,7 +3,7 @@ FREE TEXT
 
 _______________
 
-Regular cases
+REGULAR CASES
 _______________
 
 .REPT 2
@@ -30,24 +30,18 @@ test regular 5 result 4
 .ENDM
 
 division
-subtraction
-.REPT 4/2
-test regular 6 result2
+.REPT 8/3
+test regular 6 result 2
 .ENDM
 
-first more complicated expression
-.REPT 2+2*2
-test regular 7 result 6
-.ENDM
-
-second more complicated expression
+more complicated expression
 .REPT 2+3*2-4/2-5
-test regular 8 result 1
+test regular 7 result 1
 .ENDM
 
 test multiline definition
 .REPT 3
-test regular 9 result 3
+test regular 8 result 3
 second line
 .ENDM
 
